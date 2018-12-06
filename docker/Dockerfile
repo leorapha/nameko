@@ -6,7 +6,13 @@ RUN apt-get -y upgrade
 
 RUN apt-get install -y vim
 
+RUN apt-get install -y telnet
+
 RUN apt-get install rabbitmq-server -y
+
+RUN rabbitmq-plugins enable rabbitmq_management
+
+RUN rabbitmq-server start &
 
 RUN pip3 install virtualenv
 
@@ -30,3 +36,10 @@ RUN python setup.py install
 WORKDIR /nameko_teste/
 
 COPY ./ .
+
+
+WORKDIR /nameko_teste/http/
+#nameko run HttpService
+#nameko run --config ./config.yaml HttpService
+#nameko run --config ./config.yaml Publisher
+#nameko run --config ./config.yaml Subscriber

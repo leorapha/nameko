@@ -1,7 +1,6 @@
 from nameko.web.handlers import http
 
 
-
 class HttpService:
 
     name = 'http_service'
